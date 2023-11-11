@@ -9,6 +9,7 @@ def set_gear(g):
          "delay": "0",
       },
    ]
+   return value
 
 def set_break(b):
    value = [
@@ -53,4 +54,4 @@ def heartbeat():
         	"delay": "0", 
       }
 	]
-    return value
+   return value
