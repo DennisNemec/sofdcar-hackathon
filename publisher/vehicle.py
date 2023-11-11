@@ -36,13 +36,13 @@ def set_turn(s):
    value += heartbeat()
    return value
 
-def set_torque(t):
+def set_torque(t, delay):
    value = [ 
       {
          "field": "target",
          "signal": "Vehicle.Teleoperation.Torque",
-         "value": t,
-         "delay": "0",
+         "value": str(t),
+         "delay": str(delay),
       }
    ]
    value += heartbeat()

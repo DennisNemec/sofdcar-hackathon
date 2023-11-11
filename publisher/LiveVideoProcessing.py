@@ -4,6 +4,10 @@ import logging
 import os
 from pathlib import Path
 
+
+from vehicle import set_torque
+
+
 import cv2
 import numpy as np
 from kuksa_client.grpc import DataEntry
@@ -236,6 +240,11 @@ async def pub_value(client, rows):
                 row["value"],
             )
 
+def start_deceleration(torque):
+    points = np.flip(np.linspace(0, torque, 10))[1:]
+    for point in points:
+        set_torque(point, 100)
+    
 
 async def vehicle_control(client):
     vehicle_camera=CameraData.GstUdpCamera(G.PORT)
