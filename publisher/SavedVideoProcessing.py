@@ -197,7 +197,7 @@ async def vehicle_control(client):
 
         angle = get_angle_of_line([x1Mean,y1Mean,x2Mean,y2Mean], 100)
 
-        print(int(np.floor(angle)))
+        print("Angle: {}°".format(int(np.floor(angle))))
 
         cv2.imshow("Frame", thresh)
         
@@ -240,7 +240,7 @@ async def vehicle_control(client):
                 "delay": "0",
             },
         ]
-        #await pub_value(client, value)
+        await pub_value(client, value)
         if cv2.waitKey(1) & 0xFF == ord("q"):  # 1 is the time in ms
             break
     cap.release()
