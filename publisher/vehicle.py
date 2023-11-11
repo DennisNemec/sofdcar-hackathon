@@ -9,6 +9,7 @@ def set_gear(g):
          "delay": "0",
       },
    ]
+   value += heartbeat()
    return value
 
 def set_break(b):
@@ -20,20 +21,22 @@ def set_break(b):
          "delay": "0",
       }
    ]
+   value += heartbeat()
    return value
 
 def set_turn(s):
-	value = [
-	   {
+   value = [
+      {
          "field": "target",
          "signal": "Vehicle.Teleoperation.SteeringAngle",
-         "value": "s",
+         "value": s,
          "delay": "0",
       }
    ]
+   value += heartbeat()
    return value
 
-def set_torque(t) :
+def set_torque(t):
    value = [ 
       {
          "field": "target",
@@ -42,16 +45,22 @@ def set_torque(t) :
          "delay": "0",
       }
    ]
+   value += heartbeat()
    return value
 
 
 def heartbeat():
-	value = [
-		{
-        	"field": "target",
+   value = [
+      {
+         "field": "target",
          "signal": "Vehicle.Teleoperation.IsEnabled",
-       	"value": "TRUE",
-        	"delay": "0", 
+         "value": "TRUE",
+         "delay": "0", 
       }
-	]
+   ]
    return value
+
+def main():
+   print(set_turn(0.8))
+
+main()
