@@ -53,9 +53,4 @@ def heartbeat():
         	"delay": "0", 
       }
 	]
-	return value
-
-def main():
-	
-
-main()
+    return value
