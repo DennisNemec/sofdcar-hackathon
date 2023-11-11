@@ -130,13 +130,41 @@ async def vehicle_control(client):
     cap = cv2.VideoCapture("./video.mp4")
     cap.set(3, 160)
     cap.set(4, 120)
+    fgbg = cv2.createBackgroundSubtractorMOG2()
+
     while True:
-        ret, frame = cap.read()
-        low_b = np.uint8([236, 240, 235])
-        high_b = np.uint8([0, 0, 0])
-        mask = cv2.inRange(frame, high_b, low_b)
-        contours, hierarchy = cv2.findContours(mask, 1, cv2.CHAIN_APPROX_NONE)
-        cv2.imshow("Frame", frame)
+        ret, frame = cap.read()    
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        blur = cv2.GaussianBlur(frame, (0,0), sigmaX=33, sigmaY=33)
+        frame = cv2.divide(frame, blur, scale=255)
+
+        """lines = cv2.HoughLinesP(frame, 2, np.pi/180, 1,minLineLength=5, maxLineGap=100)
+        frame = cv2.cvtColor(frame, cv2.COLOR_GRAY2RGB)
+    
+        for line in lines:
+            x1, y1, x2, y2 = line[0]
+            cv2.line(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)"""
+        
+        alpha = 1 # Contrast control (1.0-3.0)
+        beta = -500 # Brightness control (0-100)
+
+        
+
+        # blur = cv2.GaussianBlur(frame, (0,0), sigmaX=1, sigmaY=1)
+        # frame = cv2.divide(frame, blur, scale=255)
+
+        adjusted = cv2.convertScaleAbs(frame, alpha=alpha, beta=beta)
+        # blur = cv2.GaussianBlur(adjusted, (0,0), sigmaX=5, sigmaY=5)
+        # frame = cv2.divide(adjusted, blur, scale=255)
+        # imagem = cv2.bitwise_not(adjusted)
+        # imagem = cv2.convertScaleAbs(frame, alpha=10, beta=0)
+
+        
+        ret, thresh1 = cv2.threshold(frame, 254, 255, cv2.THRESH_BINARY) 
+                
+        cv2.imshow("Frame", thresh1)
+        
+        
         value = [
             {
                 "field": "target",
