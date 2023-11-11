@@ -103,12 +103,19 @@ until finished
 
 - Clone this repository
 - from inside the folder, run `docker compose up`
+- To test the visualisation with turtlesim run `python3 provider.py -f output_1x.csv`
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
 
 - [KUKSA.val](https://github.com/eclipse/kuksa.val) - KUKSA Vehicle Abstraction Layer
 - [COVESA](https://covesa.github.io/vehicle_signal_specification/) - Connected Vehicle Systems Alliance
 - [ROS](https://wiki.ros.org/noetic/Installation/Ubuntu) - ROS Humble
+
+
+##  Block Diagram 
+
+<img src="./img/image.png" alt="Block Diagram"></a>
+
 <!-- - [VueJs](https://github.com/eclipse-velocitas) - Web Framework
 - [NodeJs](https://eclipse-leda.github.io/leda/docs/general-usage/sdv-introduction/) - Server Environment -->
 
