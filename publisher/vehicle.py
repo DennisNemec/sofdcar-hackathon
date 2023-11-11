@@ -61,6 +61,6 @@ def heartbeat():
    return value
 
 def main():
-   print(set_turn(0.8))
+   print(set_gear(0.8))
 
 main()
